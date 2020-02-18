@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: BRANCH_NAME
+  name: hw-service
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: hw-service
+  template:
+    metadata:
+      labels:
+        app: hw-service
+    spec:
+      containers:
+        - name: hw-service
+          image: mygitlab.vip.jelastic.cloud:8443/root/helloworld-k8s-cicd/hw-service:${CI_COMMIT_REF_NAME}-${CI_PIPELINE_ID}
+          ports:
+            - containerPort: 8080
+            
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: BRANCH_NAME
+  name: hw-service
+spec:
+  selector:
+    app: hw-service
+  ports:
+    - name: service
+      port: 8080
+
