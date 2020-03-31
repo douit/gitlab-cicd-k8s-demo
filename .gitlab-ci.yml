@@ -80,7 +80,7 @@ deploy-service:
   image: google/cloud-sdk
   stage: deploy-version
   script: |-
-        echo "Deploying HW Service"l
+        echo "Deploying HW Service"
         echo "Executed in runnner:" $(hostname)
         kubectl config set-cluster k8s --server="${K8S_SERVER}"
         kubectl config set clusters.k8s.certificate-authority-data "${K8S_CA_B64}"
