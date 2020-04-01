@@ -32,4 +32,3 @@ spec:
   ports:
     - name: service
       port: 8080
-
